@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Mentor | Pro Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon"><i class="ph-fill ph-brain"></i></div>
+                <h1 class="logo-text">Aegis<span>AI</span></h1>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active" data-target="page-dashboard"><i class="ph-bold ph-squares-four"></i> <span>Dashboard</span></li>
+                <li data-target="page-resume"><i class="ph-bold ph-scan"></i> <span>Resume Scan</span></li>
+                <li data-target="page-skills"><i class="ph-bold ph-target"></i> <span>Skill Gaps</span></li>
+                <li data-target="page-planner"><i class="ph-bold ph-calendar-check"></i> <span>Auto-Planner</span></li>
+                <li data-target="page-mock"><i class="ph-bold ph-microphone-stage"></i> <span>Mock Interview</span></li>
+                <li data-target="page-profile"><i class="ph-bold ph-users-three"></i> <span>Competitor Intel</span></li>
+                <li data-target="page-market"><i class="ph-bold ph-trend-up"></i> <span>Market Trends</span></li>
+                
+                <!-- Hidden Links for Session Routing -->
+                <li class="sidebar-hidden-link" data-target="page-code-review" id="nav-code-review"></li>
+                <li class="sidebar-hidden-link" data-target="page-theory" id="nav-theory"></li>
+            </ul>
+
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Puneeth+Kumar&background=0070f3&color=fff" alt="User" class="avatar">
+                <div class="user-info">
+                    <p class="user-name">Puneeth Kumar</p>
+                    <p class="user-level"><i class="ph-fill ph-medal text-warning"></i> Top 5% Learner</p>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="search-bar-wrapper">
+                    <div class="search-bar">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" id="global-search" placeholder="Type topic to generate custom AI plan (Press Enter)...">
+                        <div class="hotkey">↵</div>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="notification-wrapper">
+                        <button class="action-btn glow-effect" id="notif-btn"><i class="ph ph-bell"></i><span class="badge" id="notif-badge">3</span></button>
+                        <div class="dropdown-menu glass-panel" id="notif-dropdown">
+                            <h4>Intelligent Alerts</h4>
+                            <ul id="notif-list">
+                                <li><i class="ph-fill ph-warning-circle text-danger"></i> <span>You are losing your 5-day DSA streak!</span></li>
+                                <li><i class="ph-fill ph-check-circle text-success"></i> <span>GitHub Code merged. +50 XP.</span></li>
+                                <li><i class="ph-fill ph-info text-accent"></i> <span>New Google opening matches your profile.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="action-btn glow-effect" id="settings-btn"><i class="ph ph-gear"></i></button>
+                    <button class="primary-btn pulse-anim" id="start-session-btn"><i class="ph-fill ph-lightning"></i> Start AI Session</button>
+                </div>
+            </header>
+
+            <!-- PAGE: Dashboard (Overview) -->
+            <div id="page-dashboard" class="page-section active-page">
+                <div class="dashboard-grid">
+                    <!-- Welcome Section -->
+                    <section class="welcome-section glass-panel banner-bg">
+                        <div class="welcome-text">
+                            <h2>Welcome back, <span>Puneeth</span> <span class="wave">👋</span></h2>
+                            <p>You are in the <strong>Top 10%</strong> of engineering candidates. You are 70% closer to cracking a Senior Backend tier 1 role.</p>
+                            
+                            <div class="usage-stats mt-4">
+                                <div class="stats-row">
+                                    <div class="stat-pill"><i class="ph-fill ph-file-text"></i> Code Reviews: <strong>24</strong></div>
+                                    <div class="stat-pill"><i class="ph-fill ph-microphone-stage"></i> Interviews Passed: <strong>8</strong></div>
+                                    <div class="stat-pill"><i class="ph-fill ph-chart-line-up"></i> Market Read: <strong>100%</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overall-score">
+                            <svg class="circular-chart" viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="82, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <text x="18" y="20.35" class="percentage">82</text>
+                                <text x="18" y="25" class="label">Profile Score</text>
+                            </svg>
+                        </div>
+                    </section>
+                     <section class="planner-section glass-panel">
+                        <div class="panel-header">
+                            <h3><i class="ph-fill ph-magic-wand"></i> Optimized Daily Path</h3>
+                            <span class="status-tag ongoing">Active</span>
+                        </div>
+                        <ul class="task-list" id="dashboard-auto-planner">
+                            <li class="task active glow-border">
+                                <div class="task-time">02:00 PM</div>
+                                <div class="task-details"><h4>Build Scalable Message Queue</h4><p>Using Redis and FastAPI</p></div>
+                                <div class="check-icon"><i class="ph ph-circle"></i></div>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="skills-section glass-panel">
+                        <div class="panel-header"><h3><i class="ph-fill ph-crosshair"></i> Matrix Breakdown</h3></div>
+                        <div class="radar-container" id="dashboard-radar"><canvas id="skillsRadarChart"></canvas></div>
+                        <div class="critical-gap mt-2"><i class="ph-fill ph-warning warning-icon"></i><div class="gap-info"><h4>Critical Bottleneck Detected</h4><p id="bottleneck-text">System Design concepts blocking.</p></div></div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- PAGE: Live Code Review Room -->
+            <div id="page-code-review" class="page-section">
+                <div class="code-review-header flex-between mb-4">
+                    <div>
+                        <h2><i class="ph-fill ph-code text-primary"></i> Neural Code Review Engine</h2>
+                        <p class="section-desc mt-1">Simulating a rigorous Senior Staff Engineer environment focusing immediately on Core Bugs, Performance bottlenecks, Quality, and FAANG Standards.</p>
+                    </div>
+                    <button class="secondary-btn btn-danger" id="end-code-session"><i class="ph-bold ph-power"></i> Terminate Session</button>
+                </div>
+                
+                <div class="code-editor-layout">
+                    <!-- Fake IDE Window -->
+                    <div class="ide-container glass-panel">
+                        <div class="ide-header flex-between border-item mb-0 p-2">
+                            <span class="text-sm font-bold text-muted"><i class="ph-fill ph-file-py text-primary"></i> request_handler.py</span>
+                            <div class="dots flex gap-2"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                        </div>
+                        <div class="ide-body bg-darker p-4">
+                            <pre><code class="language-python text-sm font-mono text-muted">import asyncio
+
+async def process_payment(customer_id, amount):
+    # Retrieve user from DB
+    user = db.get_user(customer_id)
+    
+    <span class="highlight-error" style="border-left: 3px solid var(--danger); background: rgba(239, 68, 68, 0.1);">if user.balance >= amount:</span>
+        <span class="highlight-error" style="border-left: 3px solid var(--danger); background: rgba(239, 68, 68, 0.1);">user.balance -= amount</span>
+        <span class="highlight-error" style="border-left: 3px solid var(--warning); background: rgba(245, 158, 11, 0.1);">db.save(user) # Performance Warning</span>
+        return {"status": "success", "tx": "A190X"}
+    else:
+        return {"status": "failed", "reason": "insufficient_funds"}
+                            </code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Assistant Feedback Panel -->
+                    <div class="ai-feedback-panel glass-panel">
+                        <div class="panel-header">
+                            <h3><i class="ph-fill ph-robot text-primary"></i> Senior Engineer (AI Mode: Strict)</h3>
+                        </div>
+                        <div class="critique-content mt-2">
+                            <div class="feedback-item weakness mb-3">
+                                <h4><i class="ph-fill ph-bug text-danger"></i> 1. Critical Bug: Race Condition</h4>
+                                <p class="mt-1 text-sm text-muted">A read-modify-write operation (`user.balance -= amount`) without a row lock will result in severe financial data corruption under concurrent load.</p>
+                            </div>
+                            <div class="feedback-item weakness mb-3">
+                                <h4><i class="ph-fill ph-gauge text-warning"></i> 2. Performance Degradation</h4>
+                                <p class="mt-1 text-sm text-muted">`db.save(user)` is blocking the async event loop. You must `await` a dedicated async DB driver.</p>
+                            </div>
+                            <div class="feedback-item success mb-3">
+                                <h4><i class="ph-fill ph-code text-success"></i> 3. Code Quality Standard (FAANG)</h4>
+                                <p class="mt-1 text-sm text-muted">Consider using raw SQL with standard isolation levels or optimistic concurrency control via a `version` field instead of fetching whole ORM objects.</p>
+                            </div>
+                            <button class="primary-btn w-full mt-4"><i class="ph-bold ph-magic-wand"></i> Ingest Fixes to IDE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Theory & Architecture Revision -->
+            <div id="page-theory" class="page-section">
+                <div class="code-review-header flex-between mb-4">
+                    <div>
+                        <h2><i class="ph-fill ph-student text-primary"></i> Turing Theory & Architecture Module</h2>
+                        <p class="section-desc mt-1">Patience Level: Infinite. Focus on profound conceptual understanding, real-world examples, and visual architecture breakdowns. Memory caching on.</p>
+                    </div>
+                    <button class="secondary-btn btn-danger" onclick="document.querySelector('[data-target=\'page-dashboard\']').click();"><i class="ph-bold ph-power"></i> Leave Class</button>
+                </div>
+                
+                <div class="theory-chat-container glass-panel bg-darker" style="padding:0; overflow:hidden; border: 1px solid var(--border-color); display:flex; flex-direction:column; height: 600px;">
+                    <!-- Chat Body -->
+                    <div class="chat-history" id="theory-chat-history" style="flex: 1; overflow-y: auto; padding: 24px; padding-bottom:40px;">
+                        <div class="user-msg text-right mb-4">
+                            <div class="inline-block bg-primary text-dark p-3 rounded" style="background:var(--primary); color:#000; border-radius:12px 12px 0 12px; font-weight:500; font-size:14px; display:inline-block;">
+                                "Explain how Redis works as an event-driven cache but using a real-world restaurant example."
+                            </div>
+                        </div>
+
+                        <div class="ai-msg mb-4" style="max-width: 85%;">
+                            <div class="flex gap-2">
+                                <div class="avatar-ai" style="min-width:40px;"><i class="ph-fill ph-chalkboard-teacher text-success"></i></div>
+                                <div class="bg-gray p-4 rounded border-item" style="background:#111; border-radius:12px 12px 12px 0; font-size:14px; line-height:1.6; color:var(--text-muted);">
+                                    <p class="font-bold text-main mb-2">Excellent question. Let's break this down into a highly conceptual but real-world analogy.</p>
+                                    <p class="mb-3">Imagine a massive, sprawling restaurant (Your Database, e.g., PostgreSQL). It has millions of ingredients stored in deep freezers. If every customer asks for a complex dish, the chef has to run to the back, gather items, cook them, and plate them. This takes **time (latency)**.</p>
+                                    <p class="mb-3">Now, imagine placing a small, ultra-fast food warmer right next to the waiter station. This is <strong class="text-success">Redis (Remote Dictionary Server)</strong>. It stores pre-made, hot, ready-to-go plates (Key-Value pairs in RAM) of only the absolute most popular dishes right now.</p>
+                                    
+                                    <p class="text-accent mb-1 mt-4 font-bold">Real-World Flow (The Architecture):</p>
+                                    <pre class="font-mono text-xs bg-dark p-3 rounded border-item" style="background:#050505; color:#a1a1aa; line-height: 1.4; overflow-x:auto;">
+[Client Request] --> GET /user/profile
+       |
+       |--> 1. Hits Waiter (Application Backend)
+       |
+       |--> 2. Waiter checks the Warmer (Redis Cache)
+       |       [Key: user_101_profile]
+       |
+       |------> a) FOUND (Cache Hit) -> Instantly served! (~1ms)
+       |
+       \------> b) NOT FOUND (Cache Miss) ->
+                   |
+                   \--> 3. Waiter runs to Kitchen (PostgreSQL DB)
+                   |       (Slow disk read, ~50ms)
+                   |
+                   \--> 4. Food served AND placed in the Warmer for the next guy!
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Input Area -->
+                    <div class="chat-input-area border-t" style="border-top: 1px solid var(--border-color); padding: 16px; background:#0c0c0c;">
+                        <div class="search-bar w-full mb-0 shadow-intense">
+                            <i class="ph-bold ph-chalkboard-teacher text-success"></i>
+                            <input type="text" id="theory-input" placeholder="Ask your professor to clarify anything (Press Enter to send)..." style="width:100%;">
+                            <button id="theory-send-btn" class="primary-btn" style="padding: 6px 12px; border-radius:4px;"><i class="ph-bold ph-paper-plane-right"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Resume Analysis -->
+            <div id="page-resume" class="page-section glass-panel">
+                <h2><i class="ph-fill ph-scan text-primary"></i> Deep Resume Scan</h2>
+                <div class="upload-area" id="drop-zone">
+                    <i class="ph-fill ph-cloud-arrow-up massive-icon"></i>
+                    <h3>Drag & Drop your Resume PDF</h3>
+                    <p class="mt-2 text-muted">Supports complex multi-column layouts & ATS parsing.</p>
+                    <button class="secondary-btn mt-3 w-full" style="max-width:200px; margin: 12px auto 0;">Browse Local Files</button>
+                    <div id="resume-loader" class="hidden mt-4">
+                        <i class="ph ph-arrows-clockwise spin-anim text-primary" style="font-size: 24px;"></i>
+                        <p class="mt-2 text-accent">Extracting Named Entities & Benchmarking...</p>
+                    </div>
+                </div>
+                <div class="analysis-results hidden" id="resume-results">
+                    <div class="success-banner" style="background:rgba(16,185,129,0.1); padding:12px; border-radius:8px; border:1px solid rgba(16,185,129,0.3); color:var(--success); margin: 24px 0;"><i class="ph-fill ph-check-circle"></i> System Analyzed & Scored (82/100 ATS Match)</div>
+                    <div class="feedback-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+                        <div class="feedback-card weakness" style="background:#111; padding:20px; border-top:3px solid var(--danger); border-radius:8px;">
+                            <h4><i class="ph-fill ph-warning"></i> Red Flags / Weaknesses</h4>
+                            <ul style="list-style:none; margin-top:12px;">
+                                <li style="color:var(--text-muted); font-size:14px; margin-bottom:8px;"><strong style="color:var(--text-main)">Missing Keyword Density:</strong> You lack "Distributed Systems".</li>
+                                <li style="color:var(--text-muted); font-size:14px;"><strong style="color:var(--text-main)">Impact Verbs Weak:</strong> Use "Architected" instead of "Worked on".</li>
+                            </ul>
+                        </div>
+                        <div class="feedback-card strength" style="background:#111; padding:20px; border-top:3px solid var(--success); border-radius:8px;">
+                            <h4><i class="ph-fill ph-star"></i> Core Strengths</h4>
+                            <ul style="list-style:none; margin-top:12px;">
+                                <li style="color:var(--text-muted); font-size:14px;">Python and SQL experience clearly highlighted.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Skill Gaps -->
+            <div id="page-skills" class="page-section glass-panel">
+                <h2><i class="ph-fill ph-target text-primary"></i> Target Role Optimization</h2>
+                <div class="gap-content flex-row mt-4">
+                    <div class="radar-large"><canvas id="skillsRadarChartLarge"></canvas></div>
+                    <div class="missing-skills-list">
+                        <h3>Prioritized Attack Plan</h3>
+                        <div class="skill-item high-priority">
+                            <div class="skill-name">System Design & Arch <span class="badge-priority">CRITICAL</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar" style="width: 30%;"></div></div>
+                        </div>
+                        <div class="skill-item high-priority">
+                            <div class="skill-name">Cloud APIs / AWS Deployment <span class="badge-priority">HIGH</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar" style="width: 45%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Daily Planner -->
+            <div id="page-planner" class="page-section glass-panel">
+                <h2><i class="ph-fill ph-calendar-check text-primary"></i> Adaptive Planner</h2>
+                <div class="full-task-list mt-4" id="main-planner-list">
+                    <div class="task-row completed">
+                        <div class="time">09:00 AM</div>
+                        <div class="info">
+                            <h4>DSA Practice: Dynamic Programming</h4>
+                            <p>Solved 3 Medium Grinds</p>
+                        </div>
+                        <div class="status">Completed</div>
+                    </div>
+                    <div class="task-row active glow-border">
+                        <div class="time">02:00 PM</div>
+                        <div class="info">
+                            <h4>Build API Project</h4>
+                            <p>Implement JWT Auth in FastAPI</p>
+                        </div>
+                        <div class="status">In Progress</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Mock Interview -->
+            <div id="page-mock" class="page-section glass-panel">
+                <div class="flex-between">
+                    <div>
+                        <h2><i class="ph-fill ph-microphone-stage text-primary"></i> Simulation Chamber</h2>
+                        <p class="section-desc">Real-time voice-to-text semantic analysis. We grade you like a harsh Google interviewer.</p>
+                    </div>
+                </div>
+                <div class="interview-arena mt-4">
+                    <div class="ai-question">
+                        <div class="avatar-ai"><i class="ph-fill ph-robot"></i></div>
+                        <div class="bubble glow-response">
+                            <p><strong>Senior Staff AI:</strong> You need to build a rate limiter for our critical external payment API handling 100,000 requests per second. Explain which algorithm you choose and exactly how you store the state in a distributed environment.</p>
+                        </div>
+                    </div>
+                    <div class="user-response mt-4">
+                        <textarea placeholder="Type your answer here, or click the mic to use AI speech recognition..."></textarea>
+                        <div class="response-actions mt-2">
+                            <button class="mic-btn pulse-anim" title="Hold to speak"><i class="ph-fill ph-microphone"></i></button>
+                            <button class="primary-btn"><i class="ph-bold ph-paper-plane-right"></i> Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Profile Intel -->
+            <div id="page-profile" class="page-section glass-panel">
+                <h2><i class="ph-fill ph-users-three text-primary"></i> Competitor Reconnaissance</h2>
+                <div class="search-bar w-full mt-4 mb-4" style="max-width: 100%;">
+                    <i class="ph-bold ph-link text-accent"></i>
+                    <input type="text" id="competitor-url" placeholder="https://github.com/senior-engineer-target">
+                    <button class="primary-btn ml-2" id="analyze-btn"><i class="ph-bold ph-magnifying-glass"></i> Extract Data</button>
+                </div>
+                <div id="profile-results" class="hidden mt-4">
+                    <div class="intel-card mb-4 bg-darker">
+                        <h3><i class="ph-fill ph-fingerprint text-success"></i> Target Acquired: <span class="target-name">...</span></h3>
+                        <p class="text-sm text-muted mt-2">Analyzed repos and recent commits. Generating killer project idea to outcompete this profile.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Market Trends -->
+            <div id="page-market" class="page-section glass-panel">
+                <div class="flex-between">
+                    <div>
+                        <h2><i class="ph-fill ph-trend-up text-primary"></i> Senior Market Analyst Intel</h2>
+                        <p class="section-desc mt-1 mb-0">Actively parsing 10,000+ job descriptions daily. Aggregating data across US tech hubs.</p>
+                    </div>
+                    <div class="status-tag ongoing" style="font-size: 13px; padding: 6px 16px;"><i class="ph-bold ph-broadcast"></i> Live Matrix Sync</div>
+                </div>
+                
+                <div class="market-grid-custom mt-4" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:24px;">
+                    <!-- Pulse Banner -->
+                    <div class="glass-panel" style="grid-column: span 2; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(17,17,17,0.8)); border-left: 4px solid var(--success);">
+                        <h3><i class="ph-fill ph-activity text-success"></i> Live Market Pulse</h3>
+                        <div class="flex-between mt-3">
+                            <div>
+                                <h4 class="text-sm text-muted">Top Trending Core Skill</h4>
+                                <div class="text-lg font-bold text-main mt-1">Retrieval-Augmented Gen (RAG) Apps</div>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="text-sm text-muted">Demand Change</h4>
+                                <div class="text-2xl font-bold text-success mt-1">+142% <i class="ph-bold ph-trend-up"></i></div>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="text-sm text-muted">Status</h4>
+                                <div class="text-lg font-bold text-warning mt-1">Massive Surge</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Growth vs Decay -->
+                    <div class="glass-panel" style="background:#111; padding: 20px;">
+                        <h3><i class="ph-fill ph-rocket-launch text-primary"></i> Trending Skills</h3>
+                        <p class="text-xs text-muted mt-1 mb-3">Top 5 in-demand skills.</p>
+                        <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(255,255,255,0.02);"><span class="font-bold">1. LangChain / LlamaIndex</span></li>
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(255,255,255,0.02);"><span class="font-bold">2. System Design (Microservices)</span></li>
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(255,255,255,0.02);"><span class="font-bold">3. Vector Databases (Pinecone)</span></li>
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(255,255,255,0.02);"><span class="font-bold">4. Kubernetes (K8s)</span></li>
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(255,255,255,0.02);"><span class="font-bold">5. FastAPI / Python Backend</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel" style="background:#111; padding: 20px;">
+                        <h3><i class="ph-fill ph-trend-down text-danger"></i> Declining Skills</h3>
+                        <p class="text-xs text-muted mt-1 mb-3">List 3 skills losing demand.</p>
+                        <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(239,68,68,0.02); border-color:rgba(239,68,68,0.2);"><span class="font-bold text-muted">1. Ruby on Rails</span></li>
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(239,68,68,0.02); border-color:rgba(239,68,68,0.2);"><span class="font-bold text-muted">2. jQuery / Legacy JS</span></li>
+                            <li class="flex-between border-item p-2 rounded" style="background:rgba(239,68,68,0.02); border-color:rgba(239,68,68,0.2);"><span class="font-bold text-muted">3. Monolithic PHP</span></li>
+                        </ul>
+                        
+                        <h3 class="mt-5"><i class="ph-fill ph-briefcase text-accent"></i> Role Demand</h3>
+                        <div class="flex-between mt-2 pt-2 border-t" style="border-top:1px solid var(--border-color);">
+                            <span class="text-sm font-bold">AI Engineer</span>
+                            <span class="badge-tag tag-success" style="font-size:12px; padding:4px 8px;"><i class="ph-bold ph-fire"></i> High</span>
+                        </div>
+                        <div class="flex-between mt-2 pt-2 border-t" style="border-top:1px solid var(--border-color);">
+                            <span class="text-sm font-bold">Backend Developer</span>
+                            <span class="badge-tag" style="background:rgba(245,158,11,0.1); color:var(--warning); border-color:rgba(245,158,11,0.3); font-size:12px; padding:4px 8px;">Medium</span>
+                        </div>
+                        <div class="flex-between mt-2 pt-2 border-t" style="border-top:1px solid var(--border-color);">
+                            <span class="text-sm font-bold">Frontend Developer</span>
+                            <span class="badge-tag" style="background:rgba(255,255,255,0.05); color:var(--text-muted); font-size:12px; padding:4px 8px;">Low</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Search Result Path Modal -->
+        <div class="modal-overlay hidden" id="search-modal">
+            <div class="modal-box glass-panel" style="max-width: 600px;">
+                <div class="modal-header"><h3><i class="ph-fill ph-magic-wand"></i> AI Generated Learning Path</h3><button class="close-btn modal-close"><i class="ph-bold ph-x"></i></button></div>
+                <div class="modal-body">
+                    <p class="text-sm text-accent mb-4">Based on your query: "<strong id="search-query-text" class="text-main"></strong>", the Aegis AI Engine has synthesized an optimized 3-step action plan...</p>
+                    <div class="full-task-list mt-4" id="generated-search-path"></div>
+                    <button class="primary-btn w-full mt-5 shadow-intense" id="add-path-btn"><i class="ph-bold ph-calendar-plus"></i> Append to Daily Planner</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Session Modal Overlay -->
+        <div class="modal-overlay hidden" id="session-modal">
+            <div class="modal-box glass-panel" style="max-width: 550px;">
+                <div class="modal-header">
+                    <h3><i class="ph-fill ph-lightning text-primary"></i> Initialize Live Mentor AI</h3>
+                    <button class="close-btn modal-close"><i class="ph-bold ph-x"></i></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted text-sm mb-4">Select the operational AI persona for this session.</p>
+                    <div class="session-options mt-4">
+                        <button class="mode-btn" id="btn-mode-code" style="flex-direction: column; align-items:flex-start;">
+                            <div class="flex items-center gap-2 font-bold text-main"><i class="ph-fill ph-code text-primary text-lg"></i> Live Code Review</div>
+                        </button>
+                        <button class="mode-btn mt-2" id="btn-mode-mock" style="flex-direction: column; align-items:flex-start; border-color: rgba(239,68,68,0.2); background:rgba(239,68,68,0.02);">
+                            <div class="flex items-center gap-2 font-bold text-main"><i class="ph-fill ph-microphone-stage text-danger text-lg"></i> Aggressive Mock Interview</div>
+                        </button>
+                        <button class="mode-btn mt-2" id="btn-mode-theory" style="flex-direction: column; align-items:flex-start; border-color: rgba(16,185,129,0.2); background:rgba(16,185,129,0.02)">
+                            <div class="flex items-center gap-2 font-bold text-main"><i class="ph-fill ph-chalkboard-teacher text-success text-lg"></i> Theory & Architecture Revision</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal Overlay -->
+        <div class="modal-overlay hidden" id="settings-modal">
+            <div class="modal-box glass-panel" style="max-width: 500px;">
+                <div class="modal-header"><h3><i class="ph-fill ph-gear"></i> Platform Intelligence Settings</h3><button class="close-btn modal-close"><i class="ph-bold ph-x"></i></button></div>
+                <div class="modal-body">
+                    <div class="setting-group mb-4"><h4><i class="ph-fill ph-brain text-primary"></i> AI Strictness Level</h4><div class="flex-between mt-2"><span class="text-sm text-success font-bold">Friendly</span><input type="range" id="setting-strictness" class="custom-slider flex-1 ml-4 mr-4" min="1" max="3" value="3"><span class="text-sm text-danger font-bold">Harsh (Google Tier)</span></div></div>
+                    <div class="setting-group mb-4"><h4><i class="ph-fill ph-arrows-merge text-primary"></i> 3rd-Party Integrations</h4><div class="integration-list mt-2"><div class="integration-item flex-between border-item p-2 rounded"><div class="flex items-center gap-2"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</div><button id="setting-github-btn" class="secondary-btn text-xs py-1 px-3">Connect</button></div></div></div>
+                    <div class="setting-group"><div class="flex-between"><h4><i class="ph-fill ph-bell text-primary"></i> Push Intrusive Reminders</h4><label class="switch"><input type="checkbox" id="setting-reminders" checked><span class="slider round"></span></label></div></div>
+                    <button class="primary-btn w-full mt-5" id="save-settings-btn"><i class="ph-bold ph-floppy-disk"></i> Save Configuration</button>
+                    <p class="text-center text-xs text-success mt-2 hidden" id="settings-saved-txt">Settings persisted successfully!</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Active Toast Notifications Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
